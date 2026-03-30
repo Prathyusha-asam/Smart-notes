@@ -10,19 +10,14 @@ export default function NotesApp() {
   const user = useSelector(state => state.auth.user);
   const [search, setSearch] = useState('');
   const [activeTag, setActiveTag] = useState('');
-  // sort: 'date' = newest first (default), 'priority' = by priority
   const [sort, setSort] = useState('date');
   const [showEditor, setShowEditor] = useState(false);
   const [editNote, setEditNote] = useState(null);
-
   const allNotes = useSelector(state => state.notes.items);
   const allTags = [...new Set(allNotes.flatMap(n => n.tags))];
-
   const openCreate = () => { setEditNote(null); setShowEditor(true); };
   const openEdit = (note) => { setEditNote(note); setShowEditor(true); };
   const closeEditor = () => { setShowEditor(false); setEditNote(null); };
-
-  // Toggle: if already on priority, go back to date. Otherwise switch to priority.
   const handleSortToggle = (clicked) => {
     if (clicked === 'priority') {
       setSort(prev => prev === 'priority' ? 'date' : 'priority');
@@ -41,11 +36,8 @@ export default function NotesApp() {
           enableMouseInteraction={false}
         />
       </div>
-
-      {/* Sidebar */}
       <aside className="sidebar">
         <div className="sidebar-logo">
-          {/* Layers icon for brand */}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '8px', flexShrink: 0}}>
             <polygon points="12 2 2 7 12 12 22 7 12 2"/>
             <polyline points="2 17 12 22 22 17"/>
@@ -55,7 +47,6 @@ export default function NotesApp() {
         </div>
 
         <div className="sidebar-user">
-          {/* User icon */}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
@@ -121,8 +112,6 @@ export default function NotesApp() {
           Logout
         </button>
       </aside>
-
-      {/* Main */}
       <main className="main-area">
         <div className="topbar">
           <div className="search-wrapper">

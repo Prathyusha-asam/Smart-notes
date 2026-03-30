@@ -13,20 +13,17 @@ export default function NoteCard({ note, onEdit }) {
       <div className="note-card-header">
         <h3 className="note-title">{note.title}</h3>
 
-        {/* Pin button — SVG pin icon, toggles filled/outline */}
         <button
           className={`pin-btn ${note.pinned ? 'pinned' : ''}`}
           onClick={() => dispatch(togglePin(note.id))}
           title={note.pinned ? 'Unpin' : 'Pin'}
         >
           {note.pinned ? (
-            /* Filled pin = pinned */
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3" fill="white" stroke="white"/>
             </svg>
           ) : (
-            /* Outline pin = unpinned */
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
@@ -35,7 +32,6 @@ export default function NoteCard({ note, onEdit }) {
         </button>
       </div>
 
-      {/* Priority badge */}
       <span className={`priority-badge priority-${note.priority}`}>
         {priorityLabel[note.priority]}
       </span>
@@ -51,7 +47,6 @@ export default function NoteCard({ note, onEdit }) {
       <div className="note-footer">
         <span className="note-date">{new Date(note.updatedAt).toLocaleDateString()}</span>
         <div className="note-actions">
-          {/* Edit button with pencil icon */}
           <button onClick={() => onEdit(note)} className="btn-edit" title="Edit">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
@@ -60,7 +55,6 @@ export default function NoteCard({ note, onEdit }) {
             Edit
           </button>
 
-          {/* Delete button with trash icon */}
           <button onClick={() => dispatch(deleteNote(note.id))} className="btn-delete" title="Delete">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="3 6 5 6 21 6"/>
